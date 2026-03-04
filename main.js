@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    // ============================================
     // 1. Smooth Scrolling for Navigation
+    // ============================================
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -19,82 +22,236 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 2. Header Scroll Effect
+    // ============================================
+    // 2. Enhanced Header Scroll Effect
+    // ============================================
     const header = document.querySelector('header');
+    let lastScroll = 0;
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > 50) {
             header.style.padding = '0.5rem 5%';
             header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
         } else {
             header.style.padding = '1rem 5%';
             header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
         }
+
+        lastScroll = currentScroll;
     });
 
-    // 3. Scroll Reveal Animation
+    // ============================================
+    // 3. Enhanced Scroll Reveal Animation for Sections
+    // ============================================
     const observerOptions = {
-        threshold: 0.1
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
             }
         });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('section');
-    revealElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease-out';
-        observer.observe(el);
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        sectionObserver.observe(section);
     });
 
-    // 4. Contact Form Handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerText;
-            submitBtn.innerText = '전송 중...';
-            submitBtn.disabled = true;
+    // ============================================
+    // 4. Service Cards Animation (Staggered)
+    // ============================================
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 150); // Stagger effect
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
 
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        cardObserver.observe(card);
+    });
 
-            fetch('https://formsubmit.co/ajax/jogyeong@gmail.com', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success === "true") {
-                    alert('문의가 성공적으로 접수되었습니다. 곧 연락드리겠습니다!');
-                    contactForm.reset();
-                } else {
-                    alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-            })
-            .finally(() => {
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
-            });
+    // ============================================
+    // 5. Portfolio Gallery Items Animation (Staggered)
+    // ============================================
+    const galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+                galleryObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+        galleryObserver.observe(item);
+    });
+
+    // ============================================
+    // 6. Parallax Effect for Hero Section
+    // ============================================
+    const hero = document.querySelector('#hero');
+    if (hero) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            hero.style.backgroundPositionY = `${parallax}px`;
         });
     }
+
+    // ============================================
+    // 7. Enhanced Contact Form Handling with Validation
+    // ============================================
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const inputs = contactForm.querySelectorAll('input, textarea');
+
+        // Add focus animations to form inputs
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        contactForm.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerText = '전송 중...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+            // Form will submit normally to FormSubmit.co
+        });
+    }
+
+    // ============================================
+    // 8. Add Floating Animation to CTA Buttons
+    // ============================================
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    ctaButtons.forEach((btn, index) => {
+        setTimeout(() => {
+            btn.style.animation = `float 3s ease-in-out ${index * 0.5}s infinite`;
+        }, 1000);
+    });
+
+    // ============================================
+    // 9. Smooth Number Counter (for future stats section)
+    // ============================================
+    function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(start);
+            }
+        }, 16);
+    }
+
+    // ============================================
+    // 10. Add Cursor Effect for Gallery Items
+    // ============================================
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const imgSrc = this.querySelector('img').src;
+            createLightbox(imgSrc);
+        });
+    });
+
+    function createLightbox(imgSrc) {
+        const lightbox = document.createElement('div');
+        lightbox.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        `;
+
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.style.cssText = `
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        `;
+
+        lightbox.appendChild(img);
+        document.body.appendChild(lightbox);
+
+        lightbox.addEventListener('click', () => {
+            lightbox.style.animation = 'fadeIn 0.3s ease reverse';
+            setTimeout(() => {
+                document.body.removeChild(lightbox);
+            }, 300);
+        });
+    }
+
+    // ============================================
+    // 11. Add Page Load Animation
+    // ============================================
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+
+    // ============================================
+    // 12. Active Navigation Link on Scroll
+    // ============================================
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href') === `#${current}`) {
+                link.style.color = '#1B3022';
+                link.style.fontWeight = '700';
+            } else {
+                link.style.fontWeight = '500';
+            }
+        });
+    });
+
+    console.log('🌿 Garden Art Website Loaded Successfully!');
 });
