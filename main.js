@@ -53,24 +53,48 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // 4. Contact Form Simulation
+    // 4. Contact Form Handling
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // 시뮬레이션: 버튼 텍스트 변경
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
             submitBtn.innerText = '전송 중...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
-                alert('문의가 성공적으로 접수되었습니다. 곧 연락드리겠습니다!');
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            fetch('https://formsubmit.co/ajax/jogyeong@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === "true") {
+                    alert('문의가 성공적으로 접수되었습니다. 곧 연락드리겠습니다!');
+                    contactForm.reset();
+                } else {
+                    alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+            })
+            .finally(() => {
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
-                contactForm.reset();
-            }, 1500);
+            });
         });
     }
 });

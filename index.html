@@ -93,7 +93,12 @@
                 <h2>Contact Us</h2>
                 <p>상담이 필요하시면 언제든 메시지를 남겨주세요.</p>
             </div>
-            <form id="contact-form">
+            <form id="contact-form" action="https://formsubmit.co/jogyeong@gmail.com" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="새로운 조경 상담 문의가 접수되었습니다!">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
                 <div class="form-group">
                     <input type="text" name="name" placeholder="성함" required>
                     <input type="tel" name="phone" placeholder="연락처" required>
