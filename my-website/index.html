@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택의 미 - 수석의 세계</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            padding: 60px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: 8px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b7355, #5d4e37);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+        }
+
+        .content {
+            font-size: 1.3em;
+            text-align: justify;
+            line-height: 2.2;
+            color: #34495e;
+            margin-bottom: 30px;
+            text-indent: 2em;
+        }
+
+        .highlight {
+            color: #8b7355;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .emphasis {
+            display: block;
+            text-align: center;
+            font-size: 1.4em;
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            color: #5d4e37;
+            font-weight: 600;
+            letter-spacing: 3px;
+            border-left: 5px solid #8b7355;
+        }
+
+        .stone-symbol {
+            text-align: center;
+            font-size: 4em;
+            margin: 40px 0;
+            opacity: 0.3;
+            filter: grayscale(1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+                letter-spacing: 4px;
+            }
+
+            .content {
+                font-size: 1.1em;
+            }
+
+            .emphasis {
+                font-size: 1.2em;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>選擇의 美</h1>
+        <p class="subtitle">선택의 미 - 수석의 세계</p>
+
+        <div class="stone-symbol">🪨</div>
+
+        <p class="content">
+            <span class="highlight">수석 壽石/水石</span>은 산이나 강에서, 바닷가에서 채취한 자연석 중 특이한 형태, 문양, 색깔을 지닌 돌을 탐석해서 감상하는 취미 활동입니다.
+        </p>
+
+        <p class="content">
+            수석은 어떠한 돌을 선택하는가라는 자연과 인간과의 교감 속에서 이루어지는 예술입니다.
+        </p>
+
+        <div class="emphasis">
+            "選擇의 美"를 創出하는 行爲
+        </div>
+    </div>
+</body>
+</html>
