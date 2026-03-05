@@ -460,7 +460,7 @@ section.visible {
 
 .sculpture-img-wrap {
     width: 100%;
-    aspect-ratio: 3/4;
+    height: 250px;
     border-radius: 15px;
     overflow: hidden;
     position: relative;
@@ -540,7 +540,7 @@ section.visible {
 }
 
 .gallery-item {
-    aspect-ratio: 4/3;
+    height: 250px;
     overflow: hidden;
     border-radius: 15px;
     position: relative;
