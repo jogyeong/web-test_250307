@@ -431,6 +431,107 @@ section.visible {
     line-height: 1.8;
 }
 
+/* Garden Sculpture */
+#sculpture {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f7f5 100%);
+}
+
+.sculpture-description {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+.sculpture-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.sculpture-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.sculpture-img-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    background: #e8ede9;
+    box-shadow: 0 8px 25px rgba(27, 48, 34, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sculpture-img-wrap:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(27, 48, 34, 0.18);
+}
+
+.sculpture-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sculpture-img-wrap:hover img {
+    transform: scale(1.08);
+}
+
+.img-placeholder-label {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #4a7c59;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 1rem;
+    white-space: nowrap;
+}
+
+.sculpture-img-wrap.no-image img {
+    display: none;
+}
+
+.sculpture-img-wrap.no-image .img-placeholder-label {
+    display: block;
+}
+
+.sculpture-img-wrap.no-image {
+    border: 2px dashed #4a7c59;
+    background: #f0f5f1;
+}
+
+.sculpture-caption {
+    font-size: 0.95rem;
+    color: #1B3022;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .sculpture-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .sculpture-gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Portfolio Gallery */
 .portfolio-gallery {
     display: grid;
