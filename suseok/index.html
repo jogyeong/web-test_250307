@@ -3,153 +3,731 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>선택의 미 - 수석의 세계</title>
+    <title>수석닷컴 - Suseok</title>
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
-            line-height: 1.8;
-            color: #2c3e50;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            font-family: Gulim, 'Apple SD Gothic Neo', sans-serif;
+            font-size: 14px;
+            color: #333;
+            background: #f2f2f2;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #04beb8;
+        }
+
+        /* ── HEADER ── */
+        #header {
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            justify-content: space-between;
+            padding: 20px 16px;
         }
 
-        .container {
-            max-width: 800px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            padding: 60px;
-            animation: fadeIn 1s ease-in;
+        .blog-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .blog-title img {
+            width: 60px;
+            height: 78px;
+            object-fit: cover;
+            border-radius: 4px;
         }
 
-        h1 {
-            font-size: 3.5em;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #1a1a1a;
+        .blog-title-text h1 {
+            font-size: 26px;
             font-weight: 700;
-            letter-spacing: 8px;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #8b7355, #5d4e37);
-            border-radius: 2px;
-        }
-
-        .subtitle {
-            text-align: center;
-            font-size: 1.2em;
-            color: #7f8c8d;
-            margin-bottom: 50px;
+            color: #04beb8;
             letter-spacing: 2px;
         }
 
-        .content {
-            font-size: 1.3em;
-            text-align: justify;
-            line-height: 2.2;
-            color: #34495e;
-            margin-bottom: 30px;
-            text-indent: 2em;
+        .blog-title-text p {
+            font-size: 12px;
+            color: #888;
+            margin-top: 2px;
         }
 
-        .highlight {
-            color: #8b7355;
-            font-weight: 600;
-            font-size: 1.1em;
+        .header-nav {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: #888;
         }
 
-        .emphasis {
+        .header-nav a:hover {
+            color: #04beb8;
+        }
+
+        /* ── GNAV (Category Navigation) ── */
+        #gnav {
+            background: #04beb8;
+        }
+
+        .gnav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 16px;
+        }
+
+        .gnav-inner a {
             display: block;
-            text-align: center;
-            font-size: 1.4em;
-            margin-top: 50px;
-            padding: 30px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            color: #5d4e37;
+            color: #fff;
+            font-size: 13px;
             font-weight: 600;
-            letter-spacing: 3px;
-            border-left: 5px solid #8b7355;
+            padding: 10px 18px;
+            transition: background 0.2s;
         }
 
-        .stone-symbol {
+        .gnav-inner a:hover,
+        .gnav-inner a.active {
+            background: rgba(0,0,0,0.15);
+            color: #fff;
+        }
+
+        /* ── WRAPPER ── */
+        #wrapper {
+            max-width: 1000px;
+            margin: 24px auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 24px;
+        }
+
+        /* ── MAIN CONTENT ── */
+        #content {
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+        }
+
+        .category-header {
+            padding: 14px 20px;
+            border-bottom: 2px solid #04beb8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-header h2 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #04beb8;
+        }
+
+        .category-header .count {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Post Grid */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .post-item {
+            border-right: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .post-item:nth-child(3n) {
+            border-right: none;
+        }
+
+        .post-item:hover {
+            background: #fafafa;
+        }
+
+        .post-item a {
+            display: block;
+            padding: 16px;
+        }
+
+        .post-thumb {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 3px;
+            display: block;
+            background: #eee;
+        }
+
+        .post-thumb-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #e0f7f6, #b2ebea);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #04beb8;
+        }
+
+        .post-info {
+            padding-top: 10px;
+        }
+
+        .post-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 4px;
+            word-break: keep-all;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-date {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        /* Pagination */
+        .pagination {
+            padding: 20px;
             text-align: center;
-            font-size: 4em;
-            margin: 40px 0;
-            opacity: 0.3;
-            filter: grayscale(1);
+            border-top: 1px solid #e5e5e5;
         }
 
+        .pagination span {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            font-size: 12px;
+            border: 1px solid #04beb8;
+            border-radius: 3px;
+            color: #04beb8;
+            background: #fff;
+        }
+
+        .pagination span.current {
+            background: #04beb8;
+            color: #fff;
+        }
+
+        /* ── SIDEBAR ── */
+        #sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .widget {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .widget-header {
+            padding: 10px 14px;
+            background: #04beb8;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .widget-body {
+            padding: 10px 14px;
+        }
+
+        /* Profile Widget */
+        .profile-widget .widget-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            gap: 10px;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 104px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid #e5e5e5;
+        }
+
+        .profile-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Post list widget */
+        .widget-post-list {
+            list-style: none;
+        }
+
+        .widget-post-list li {
+            padding: 7px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .widget-post-list li:last-child {
+            border-bottom: none;
+        }
+
+        .widget-post-list li::before {
+            content: '▸';
+            color: #04beb8;
+            font-size: 10px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .widget-post-list a {
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .widget-post-list a:hover {
+            color: #04beb8;
+        }
+
+        /* Tag Cloud */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 10px 14px;
+        }
+
+        .tag-cloud a {
+            font-size: 11px;
+            color: #555;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 2px 7px;
+            transition: all 0.2s;
+        }
+
+        .tag-cloud a:hover {
+            background: #04beb8;
+            border-color: #04beb8;
+            color: #fff;
+        }
+
+        /* Visitor Stats */
+        .stats-table {
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table td {
+            padding: 6px 4px;
+        }
+
+        .stats-table td:first-child {
+            color: #888;
+            width: 50%;
+        }
+
+        .stats-table td:last-child {
+            color: #04beb8;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* Category list in sidebar */
+        .category-list {
+            list-style: none;
+            font-size: 12px;
+        }
+
+        .category-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: #444;
+        }
+
+        .category-list a:hover {
+            color: #04beb8;
+        }
+
+        .category-list .cat-count {
+            color: #aaa;
+        }
+
+        /* ── FOOTER ── */
+        #footer {
+            background: #fff;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            padding: 20px 16px;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        #footer a {
+            color: #04beb8;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .post-item {
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .post-item:nth-child(1) { animation-delay: 0.05s; }
+        .post-item:nth-child(2) { animation-delay: 0.10s; }
+        .post-item:nth-child(3) { animation-delay: 0.15s; }
+        .post-item:nth-child(4) { animation-delay: 0.20s; }
+        .post-item:nth-child(5) { animation-delay: 0.25s; }
+        .post-item:nth-child(6) { animation-delay: 0.30s; }
+
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            .container {
-                padding: 30px;
+            #wrapper {
+                grid-template-columns: 1fr;
             }
 
-            h1 {
-                font-size: 2.5em;
-                letter-spacing: 4px;
+            .post-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .content {
-                font-size: 1.1em;
+            .post-item:nth-child(3n) {
+                border-right: 1px solid #e5e5e5;
             }
 
-            .emphasis {
-                font-size: 1.2em;
-                padding: 20px;
+            .post-item:nth-child(2n) {
+                border-right: none;
+            }
+
+            .blog-title-text h1 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .post-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .post-item {
+                border-right: none !important;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>選擇의 美</h1>
-        <p class="subtitle">선택의 미 - 수석의 세계</p>
 
-        <div class="stone-symbol">🪨</div>
-
-        <p class="content">
-            <span class="highlight">수석 壽石/水石</span>은 산이나 강에서, 바닷가에서 채취한 자연석 중 특이한 형태, 문양, 색깔을 지닌 돌을 탐석해서 감상하는 취미 활동입니다.
-        </p>
-
-        <p class="content">
-            수석은 어떠한 돌을 선택하는가라는 자연과 인간과의 교감 속에서 이루어지는 예술입니다.
-        </p>
-
-        <div class="emphasis">
-            "選擇의 美"를 創出하는 行爲
+<!-- ── HEADER ── -->
+<header id="header">
+    <div class="header-inner">
+        <div class="blog-title">
+            <img
+                src="https://tistory1.daumcdn.net/tistory/532020/attach/c1b74fbb748d422b88eb923fdf8e7e58"
+                alt="수석닷컴 로고"
+                onerror="this.style.display='none'"
+            >
+            <div class="blog-title-text">
+                <h1>수석닷컴</h1>
+                <p>해인수석 · 선택의 미를 창출하는 행위</p>
+            </div>
         </div>
+        <nav class="header-nav">
+            <a href="https://suseok.com" target="_blank">홈</a>
+            <span>|</span>
+            <a href="https://suseok.com/category" target="_blank">전체보기</a>
+            <span>|</span>
+            <a href="https://suseok.com" target="_blank">관리</a>
+        </nav>
     </div>
+</header>
+
+<!-- ── CATEGORY NAV ── -->
+<nav id="gnav">
+    <div class="gnav-inner">
+        <a href="https://suseok.com/category" target="_blank">분류 전체보기</a>
+        <a href="https://suseok.com/category/Suseok" class="active" target="_blank">Suseok</a>
+        <a href="https://suseok.com/category/trees" target="_blank">trees</a>
+    </div>
+</nav>
+
+<!-- ── WRAPPER ── -->
+<div id="wrapper">
+
+    <!-- ── MAIN CONTENT ── -->
+    <main id="content">
+        <div class="category-header">
+            <h2>Suseok</h2>
+            <span class="count">6개의 글</span>
+        </div>
+
+        <div class="post-grid" id="postGrid">
+            <!-- Posts are dynamically rendered via JS -->
+        </div>
+
+        <div class="pagination">
+            <span class="current">1</span>
+        </div>
+    </main>
+
+    <!-- ── SIDEBAR ── -->
+    <aside id="sidebar">
+
+        <!-- Profile -->
+        <div class="widget profile-widget">
+            <div class="widget-header">해인수석</div>
+            <div class="widget-body">
+                <img
+                    class="profile-img"
+                    src="https://tistory1.daumcdn.net/tistory/532020/attach/c1b74fbb748d422b88eb923fdf8e7e58"
+                    alt="프로필"
+                    onerror="this.style.display='none'"
+                >
+                <div class="profile-name">수석닷컴</div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="widget">
+            <div class="widget-header">카테고리</div>
+            <div class="widget-body">
+                <ul class="category-list">
+                    <li>
+                        <a href="https://suseok.com/category" target="_blank">
+                            <span>분류 전체보기</span>
+                            <span class="cat-count">(6)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://suseok.com/category/Suseok" target="_blank">
+                            <span>└ Suseok</span>
+                            <span class="cat-count">(6)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://suseok.com/category/trees" target="_blank">
+                            <span>└ trees</span>
+                            <span class="cat-count">(0)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="widget">
+            <div class="widget-header">최근글</div>
+            <div class="widget-body">
+                <ul class="widget-post-list" id="recentPosts"></ul>
+            </div>
+        </div>
+
+        <!-- Popular Posts -->
+        <div class="widget">
+            <div class="widget-header">인기글</div>
+            <div class="widget-body">
+                <ul class="widget-post-list" id="popularPosts"></ul>
+            </div>
+        </div>
+
+        <!-- Tag Cloud -->
+        <div class="widget">
+            <div class="widget-header">태그</div>
+            <div class="tag-cloud" id="tagCloud"></div>
+        </div>
+
+        <!-- Visitor Stats -->
+        <div class="widget">
+            <div class="widget-header">방문자</div>
+            <div class="widget-body">
+                <table class="stats-table" id="statsTable"></table>
+            </div>
+        </div>
+
+    </aside>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer id="footer">
+    <p>© 2026 <a href="https://suseok.com" target="_blank">수석닷컴</a> · 해인수석 · Powered by Tistory</p>
+</footer>
+
+<script>
+    /* ── DATA ── */
+    const posts = [
+        {
+            title: "산수경석과 양석",
+            url: "https://suseok.com/entry/%EC%82%B0%EC%88%98%EA%B2%BD%EC%84%9D%EA%B3%BC-%EC%96%91%EC%84%9D",
+            date: "2026.02.28",
+            thumb: "https://i1.daumcdn.net/thumb/C230x300.fwebp.q85/?fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FoEbd5%2FdJMcad18bAj%2FAAAAAAAAAAAAAAAAAAAAAE59siYTDeLgBCM4ZqG2dOyCiU29mntuC5kt6aBN4ljX%2Fimg.jpg"
+        },
+        {
+            title: "Chrysanthemum Stone",
+            url: "https://suseok.com/entry/Chrysanthemum-Stone",
+            date: "2026.02.28",
+            thumb: "https://i1.daumcdn.net/thumb/C230x300.fwebp.q85/?fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbjgWlf%2FdJMcafFHIOA%2FAAAAAAAAAAAAAAAAAAAAABkHe_oUYfZDbUZjvPOCLPuxsWKVAWDy3rO11ND4iHVG%2Fimg.jpg"
+        },
+        {
+            title: "Sun flowerstone",
+            url: "https://suseok.com/entry/Sun-flowerstone",
+            date: "2026.02.28",
+            thumb: "https://i1.daumcdn.net/thumb/C230x300.fwebp.q85/?fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FefeUHC%2FdJMcacWuuGU%2FAAAAAAAAAAAAAAAAAAAAAKlQrn6V8yOq5ITe9-gTEM0TVpHSLySKErZFty_ol3YW%2Fimg.jpg"
+        },
+        {
+            title: "About Flowerstone",
+            url: "https://suseok.com/entry/About-Flowerstone",
+            date: "2026.02.28",
+            thumb: "https://i1.daumcdn.net/thumb/C230x300.fwebp.q85/?fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcSdhKr%2FdJMcagLonbF%2FAAAAAAAAAAAAAAAAAAAAAD_NQU4nQrhkUy_Kp9OBjAWY5MojT2Z1oGMQpURMAvgO%2Fimg.jpg"
+        },
+        {
+            title: "수석(壽石)",
+            url: "https://suseok.com/entry/%EC%88%98%EC%84%9D%E5%A3%BD%E7%9F%B3",
+            date: "2026.02.25",
+            thumb: "https://i1.daumcdn.net/thumb/C230x300.fwebp.q85/?fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FBEVm1%2FdJMcacCbEVC%2FAAAAAAAAAAAAAAAAAAAAABQl2POvfMArjn64OiNw73UwTJsJeW8bc6rXJVMXe98K%2Fimg.jpg"
+        },
+        {
+            title: "수석은 선택의 미",
+            url: "https://suseok.com/entry/%EC%88%98%EC%84%9D%EC%9D%80-%EC%84%A0%ED%83%9D%EC%9D%98-%EB%AF%B8",
+            date: "2026.02.25",
+            thumb: "https://i1.daumcdn.net/thumb/C230x300.fwebp.q85/?fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcIV6jE%2FdJMcagLmdI0%2FAAAAAAAAAAAAAAAAAAAAAErhenjYre2gXzmMxC8Dz728x5hKJdUQ9jlyFyzkpjiO%2Fimg.jpg"
+        }
+    ];
+
+    const tags = [
+        "수석", "산수경석", "양석", "국화석",
+        "FlowerStone", "Chrysanthemum Stone", "Suseok",
+        "미니소나무", "조형소나무", "양평소나무",
+        "壽石", "水石", "탐석", "자연석", "관상석",
+        "돌예술", "해인수석", "수석감상", "수석취미"
+    ];
+
+    const stats = [
+        { label: "전체 방문자", value: "6,511" },
+        { label: "오늘",         value: "24" },
+        { label: "어제",         value: "6" }
+    ];
+
+    /* ── RENDER FUNCTIONS ── */
+
+    function renderPosts() {
+        const grid = document.getElementById('postGrid');
+        grid.innerHTML = posts.map(p => `
+            <article class="post-item">
+                <a href="${p.url}" target="_blank">
+                    <img
+                        class="post-thumb"
+                        src="${p.thumb}"
+                        alt="${p.title}"
+                        loading="lazy"
+                        onerror="this.parentNode.innerHTML='<div class=\\'post-thumb-placeholder\\'>🪨</div>' + this.parentNode.innerHTML.replace(this.outerHTML,'')"
+                    >
+                    <div class="post-info">
+                        <div class="post-title">${p.title}</div>
+                        <div class="post-date">${p.date}</div>
+                    </div>
+                </a>
+            </article>
+        `).join('');
+    }
+
+    function renderSidebarPosts() {
+        const recent  = document.getElementById('recentPosts');
+        const popular = document.getElementById('popularPosts');
+        const top5 = posts.slice(0, 5);
+        const popularOrder = [0, 1, 2, 3, 4]; // 인기순 (동일 데이터)
+
+        const listHtml = (arr) => arr.map(p => `
+            <li>
+                <a href="${p.url}" target="_blank">${p.title}</a>
+            </li>
+        `).join('');
+
+        recent.innerHTML  = listHtml(top5);
+        popular.innerHTML = listHtml(popularOrder.map(i => posts[i]));
+    }
+
+    function renderTags() {
+        const cloud = document.getElementById('tagCloud');
+        cloud.innerHTML = tags.map(t => `
+            <a href="https://suseok.com/tag/${encodeURIComponent(t)}" target="_blank">${t}</a>
+        `).join('');
+    }
+
+    function renderStats() {
+        const table = document.getElementById('statsTable');
+        table.innerHTML = stats.map(s => `
+            <tr>
+                <td>${s.label}</td>
+                <td>${s.value}</td>
+            </tr>
+        `).join('');
+    }
+
+    /* ── INIT ── */
+    renderPosts();
+    renderSidebarPosts();
+    renderTags();
+    renderStats();
+</script>
+
 </body>
 </html>
