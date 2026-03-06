@@ -3,612 +3,594 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>수석닷컴 - Suseok</title>
+    <meta name="description" content="수석닷컴 - 자연이 빚은 돌의 아름다움, 선택의 미를 창출하는 수석 문화">
+    <meta name="keywords" content="수석, 壽石, 水石, 산수경석, 양석, 국화석, FlowerStone, 탐석, 해인수석">
+    <title>수석닷컴 (Suseok) - 선택의 美</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ── Reset & Global ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: Gulim, 'Apple SD Gothic Neo', sans-serif;
-            font-size: 14px;
-            color: #333;
-            background: #f2f2f2;
+            font-family: 'Noto Sans KR', sans-serif;
             line-height: 1.6;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #04beb8;
-        }
-
-        /* ── HEADER ── */
-        #header {
+            color: #333;
             background: #fff;
-            border-bottom: 1px solid #e5e5e5;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+        ul { list-style: none; }
+
+        /* ── Keyframes ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to   { opacity: 1; transform: translateX(0); }
         }
 
-        .header-inner {
-            max-width: 1000px;
-            margin: 0 auto;
+        /* ── Header ── */
+        header {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+        nav {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 20px 16px;
-        }
-
-        .blog-title {
-            display: flex;
             align-items: center;
-            gap: 16px;
-        }
-
-        .blog-title img {
-            width: 60px;
-            height: 78px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .blog-title-text h1 {
-            font-size: 26px;
-            font-weight: 700;
-            color: #04beb8;
-            letter-spacing: 2px;
-        }
-
-        .blog-title-text p {
-            font-size: 12px;
-            color: #888;
-            margin-top: 2px;
-        }
-
-        .header-nav {
-            display: flex;
-            gap: 12px;
-            font-size: 12px;
-            color: #888;
-        }
-
-        .header-nav a:hover {
-            color: #04beb8;
-        }
-
-        /* ── GNAV (Category Navigation) ── */
-        #gnav {
-            background: #04beb8;
-        }
-
-        .gnav-inner {
-            max-width: 1000px;
+            max-width: 1400px;
             margin: 0 auto;
-            display: flex;
-            padding: 0 16px;
         }
-
-        .gnav-inner a {
-            display: block;
-            color: #fff;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 10px 18px;
-            transition: background 0.2s;
-        }
-
-        .gnav-inner a:hover,
-        .gnav-inner a.active {
-            background: rgba(0,0,0,0.15);
-            color: #fff;
-        }
-
-        /* ── WRAPPER ── */
-        #wrapper {
-            max-width: 1000px;
-            margin: 24px auto;
-            padding: 0 16px;
-            display: grid;
-            grid-template-columns: 1fr 220px;
-            gap: 24px;
-        }
-
-        /* ── MAIN CONTENT ── */
-        #content {
-            background: #fff;
-            border-radius: 4px;
-            border: 1px solid #e5e5e5;
-            overflow: hidden;
-        }
-
-        .category-header {
-            padding: 14px 20px;
-            border-bottom: 2px solid #04beb8;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .category-header h2 {
-            font-size: 15px;
+        .logo a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #04beb8;
+            color: #1B3022;
+            transition: all 0.3s ease;
         }
-
-        .category-header .count {
-            font-size: 12px;
-            color: #999;
+        .logo a:hover { transform: scale(1.05); display: inline-block; }
+        .logo span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #C4A484;
+            text-transform: uppercase;
+            margin-top: -5px;
         }
-
-        /* Post Grid */
-        .post-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
+        nav ul { display: flex; gap: 2.5rem; }
+        nav ul a {
+            color: #444;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
         }
+        nav ul a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #1B3022, #4a7c59);
+            transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        nav ul a:hover { color: #1B3022; }
+        nav ul a:hover::after { width: 100%; }
 
-        .post-item {
-            border-right: 1px solid #e5e5e5;
-            border-bottom: 1px solid #e5e5e5;
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
             cursor: pointer;
-            transition: background 0.2s;
+            padding: 4px;
         }
-
-        .post-item:nth-child(3n) {
-            border-right: none;
-        }
-
-        .post-item:hover {
-            background: #fafafa;
-        }
-
-        .post-item a {
+        .hamburger span {
             display: block;
-            padding: 16px;
+            width: 24px; height: 2px;
+            background: #1B3022;
+            transition: all 0.3s ease;
         }
 
-        .post-thumb {
-            width: 100%;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            border-radius: 3px;
-            display: block;
-            background: #eee;
-        }
-
-        .post-thumb-placeholder {
-            width: 100%;
-            aspect-ratio: 3/4;
-            background: linear-gradient(135deg, #e0f7f6, #b2ebea);
-            border-radius: 3px;
+        /* ── Hero ── */
+        #hero {
+            height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(27,48,34,0.75), rgba(74,124,89,0.55)),
+                url('https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FoEbd5%2FdJMcad18bAj%2FAAAAAAAAAAAAAAAAAAAAAE59siYTDeLgBCM4ZqG2dOyCiU29mntuC5kt6aBN4ljX%2Fimg.jpg')
+                center/cover fixed;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            color: #04beb8;
-        }
-
-        .post-info {
-            padding-top: 10px;
-        }
-
-        .post-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            line-height: 1.5;
-            margin-bottom: 4px;
-            word-break: keep-all;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            text-align: center;
+            color: #fff;
+            position: relative;
             overflow: hidden;
         }
-
-        .post-date {
-            font-size: 11px;
-            color: #aaa;
+        #hero::before {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to top, #fff, transparent);
         }
-
-        /* Pagination */
-        .pagination {
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #e5e5e5;
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+            z-index: 1;
+            padding: 0 20px;
         }
-
-        .pagination span {
-            display: inline-block;
-            width: 28px;
-            height: 28px;
-            line-height: 28px;
-            text-align: center;
-            font-size: 12px;
-            border: 1px solid #04beb8;
-            border-radius: 3px;
-            color: #04beb8;
-            background: #fff;
+        .hero-content .hero-label {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C4A484;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
-
-        .pagination span.current {
-            background: #04beb8;
-            color: #fff;
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
-
-        /* ── SIDEBAR ── */
-        #sidebar {
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        .hero-buttons {
             display: flex;
-            flex-direction: column;
-            gap: 16px;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.9s both;
         }
-
-        .widget {
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .widget-header {
-            padding: 10px 14px;
-            background: #04beb8;
-            color: #fff;
-            font-size: 13px;
+        .cta-button {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%,-50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .cta-button:hover::before { width: 300px; height: 300px; }
+        .cta-button.primary {
+            background: linear-gradient(135deg, #1B3022, #2c4a35);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(27,48,34,0.3);
+        }
+        .cta-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(27,48,34,0.4);
+            color: #fff;
+        }
+        .cta-button.secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+        .cta-button.secondary:hover {
+            background: #fff;
+            color: #1B3022;
+            transform: translateY(-3px);
+        }
+
+        /* ── Sections Common ── */
+        section {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        section.visible { opacity: 1; transform: translateY(0); }
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px; left: 50%;
+            transform: translateX(-50%);
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, transparent, #1B3022, transparent);
+            border-radius: 2px;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1B3022;
+            margin-bottom: 1rem;
+        }
+        .section-header p { color: #888; font-size: 1.1rem; }
+
+        /* ── Posts Gallery ── */
+        #posts {
+            background: linear-gradient(135deg, #f8faf9 0%, #ffffff 100%);
+        }
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .post-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 8px 25px rgba(27,48,34,0.08);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+            opacity: 0;
+            transform: translateY(30px);
+            cursor: pointer;
+        }
+        .post-card.visible { opacity: 1; transform: translateY(0); }
+        .post-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(27,48,34,0.15);
+        }
+        .post-card-img {
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+        .post-card-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,48,34,0.7), rgba(74,124,89,0.5));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        .post-card-img::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            font-size: 2.5rem;
+            color: #fff;
+            z-index: 2;
+            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+        .post-card:hover .post-card-img::before { opacity: 1; }
+        .post-card:hover .post-card-img::after { transform: translate(-50%,-50%) scale(1); }
+        .post-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .post-card:hover .post-card-img img { transform: scale(1.15) rotate(1deg); }
+        .post-card-body { padding: 1.5rem 2rem 2rem; }
+        .post-card-body h3 {
+            font-size: 1.2rem;
+            color: #1B3022;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+        .post-card:hover .post-card-body h3 { color: #4a7c59; }
+        .post-card-body .post-date {
+            font-size: 0.85rem;
+            color: #C4A484;
             letter-spacing: 1px;
         }
 
-        .widget-body {
-            padding: 10px 14px;
-        }
-
-        /* Profile Widget */
-        .profile-widget .widget-body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px;
-            gap: 10px;
-        }
-
-        .profile-img {
-            width: 80px;
-            height: 104px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 2px solid #e5e5e5;
-        }
-
-        .profile-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        /* Post list widget */
-        .widget-post-list {
-            list-style: none;
-        }
-
-        .widget-post-list li {
-            padding: 7px 0;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            gap: 8px;
-            align-items: flex-start;
-        }
-
-        .widget-post-list li:last-child {
-            border-bottom: none;
-        }
-
-        .widget-post-list li::before {
-            content: '▸';
-            color: #04beb8;
-            font-size: 10px;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .widget-post-list a {
-            font-size: 12px;
-            color: #444;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+        /* ── About (수석 소개) ── */
+        #about {
+            background: linear-gradient(135deg, #1B3022 0%, #2c4a35 100%);
+            color: #fff;
+            border-radius: 30px;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
             overflow: hidden;
         }
-
-        .widget-post-list a:hover {
-            color: #04beb8;
+        #about::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(196,164,132,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .about-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+        }
+        .about-inner h2 {
+            font-family: 'Playfair Display', serif;
+            color: #C4A484;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .about-inner h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        .about-inner p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            opacity: 0.85;
+            margin-bottom: 1rem;
+        }
+        .about-highlight {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1.2rem 2rem;
+            background: rgba(196,164,132,0.15);
+            border-left: 4px solid #C4A484;
+            border-radius: 0 12px 12px 0;
+            font-size: 1.15rem;
+            font-style: italic;
+            letter-spacing: 1px;
+            color: #f0dfc0;
         }
 
-        /* Tag Cloud */
-        .tag-cloud {
+        /* ── Tags ── */
+        #tags {
+            background: #fff;
+        }
+        .tag-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
-            padding: 10px 14px;
+            gap: 0.8rem;
+            justify-content: center;
         }
-
-        .tag-cloud a {
-            font-size: 11px;
-            color: #555;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            padding: 2px 7px;
-            transition: all 0.2s;
+        .tag-item {
+            padding: 0.6rem 1.4rem;
+            border: 1.5px solid #1B3022;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #1B3022;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: scale(0.9);
         }
-
-        .tag-cloud a:hover {
-            background: #04beb8;
-            border-color: #04beb8;
+        .tag-item.visible { opacity: 1; transform: scale(1); }
+        .tag-item:hover {
+            background: linear-gradient(135deg, #1B3022, #4a7c59);
             color: #fff;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(27,48,34,0.25);
         }
 
-        /* Visitor Stats */
-        .stats-table {
-            width: 100%;
-            font-size: 12px;
+        /* ── Stats Bar ── */
+        #stats {
+            background: linear-gradient(135deg, #f8faf9, #fff);
+            padding: 4rem 5%;
         }
-
-        .stats-table tr {
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .stats-table tr:last-child {
-            border-bottom: none;
-        }
-
-        .stats-table td {
-            padding: 6px 4px;
-        }
-
-        .stats-table td:first-child {
-            color: #888;
-            width: 50%;
-        }
-
-        .stats-table td:last-child {
-            color: #04beb8;
-            font-weight: 700;
-            text-align: right;
-        }
-
-        /* Category list in sidebar */
-        .category-list {
-            list-style: none;
-            font-size: 12px;
-        }
-
-        .category-list li {
-            padding: 6px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .category-list li:last-child {
-            border-bottom: none;
-        }
-
-        .category-list a {
+        .stats-inner {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            color: #444;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
         }
-
-        .category-list a:hover {
-            color: #04beb8;
-        }
-
-        .category-list .cat-count {
-            color: #aaa;
-        }
-
-        /* ── FOOTER ── */
-        #footer {
-            background: #fff;
-            border-top: 1px solid #e5e5e5;
+        .stat-item {
             text-align: center;
-            padding: 20px 16px;
-            font-size: 12px;
-            color: #aaa;
-            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .stat-item.visible { opacity: 1; transform: translateY(0); }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #1B3022;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 0.3rem;
+            letter-spacing: 1px;
         }
 
-        #footer a {
-            color: #04beb8;
+        /* ── Footer ── */
+        footer {
+            background: linear-gradient(135deg, #0a1612 0%, #1B3022 100%);
+            color: #999;
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to bottom, #fff, transparent);
+        }
+        .footer-content { position: relative; z-index: 1; }
+        .footer-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #C4A484;
+            margin-bottom: 1rem;
+        }
+        .footer-content p { opacity: 0.8; margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .footer-links {
+            margin-top: 1.8rem;
+        }
+        .footer-links a {
+            color: #999;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: #C4A484;
+            background: rgba(196,164,132,0.1);
+            transform: translateY(-3px);
+            display: inline-block;
         }
 
-        /* ── ANIMATIONS ── */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #1B3022, #4a7c59);
+            border-radius: 10px;
         }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #2c4a35, #5a9c6f); }
+        ::selection { background: #1B3022; color: #fff; }
 
-        .post-item {
-            animation: fadeUp 0.5s ease both;
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .hero-content h1 { font-size: 3rem; }
         }
-
-        .post-item:nth-child(1) { animation-delay: 0.05s; }
-        .post-item:nth-child(2) { animation-delay: 0.10s; }
-        .post-item:nth-child(3) { animation-delay: 0.15s; }
-        .post-item:nth-child(4) { animation-delay: 0.20s; }
-        .post-item:nth-child(5) { animation-delay: 0.25s; }
-        .post-item:nth-child(6) { animation-delay: 0.30s; }
-
-        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            #wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .post-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .post-item:nth-child(3n) {
-                border-right: 1px solid #e5e5e5;
-            }
-
-            .post-item:nth-child(2n) {
-                border-right: none;
-            }
-
-            .blog-title-text h1 {
-                font-size: 20px;
-            }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1rem; }
+            nav ul { display: none; }
+            .hamburger { display: flex; }
+            .posts-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            section { padding: 5rem 5%; }
+            .section-header h2 { font-size: 2rem; }
+            .stats-inner { gap: 2.5rem; }
         }
-
         @media (max-width: 480px) {
-            .post-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .post-item {
-                border-right: none !important;
-            }
+            .hero-content h1 { font-size: 1.8rem; }
+            .hero-buttons { flex-direction: column; }
+            .cta-button { padding: 0.8rem 1.5rem; font-size: 0.8rem; }
+            .posts-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
 <!-- ── HEADER ── -->
-<header id="header">
-    <div class="header-inner">
-        <div class="blog-title">
-            <img
-                src="https://tistory1.daumcdn.net/tistory/532020/attach/c1b74fbb748d422b88eb923fdf8e7e58"
-                alt="수석닷컴 로고"
-                onerror="this.style.display='none'"
-            >
-            <div class="blog-title-text">
-                <h1>수석닷컴</h1>
-                <p>해인수석 · 선택의 미를 창출하는 행위</p>
-            </div>
+<header>
+    <nav>
+        <div class="logo">
+            <a href="#">수석닷컴<span>Suseok · 해인수석</span></a>
         </div>
-        <nav class="header-nav">
-            <a href="https://suseok.com" target="_blank">홈</a>
-            <span>|</span>
-            <a href="https://suseok.com/category" target="_blank">전체보기</a>
-            <span>|</span>
-            <a href="https://suseok.com" target="_blank">관리</a>
-        </nav>
-    </div>
+        <ul id="navMenu">
+            <li><a href="#hero">홈</a></li>
+            <li><a href="#posts">포스트</a></li>
+            <li><a href="#about">수석이란</a></li>
+            <li><a href="#tags">태그</a></li>
+            <li><a href="https://suseok.com" target="_blank">블로그 방문</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
 </header>
 
-<!-- ── CATEGORY NAV ── -->
-<nav id="gnav">
-    <div class="gnav-inner">
-        <a href="https://suseok.com/category" target="_blank">분류 전체보기</a>
-        <a href="https://suseok.com/category/Suseok" class="active" target="_blank">Suseok</a>
-        <a href="https://suseok.com/category/trees" target="_blank">trees</a>
+<!-- ── HERO ── -->
+<section id="hero">
+    <div class="hero-content">
+        <p class="hero-label">壽石 · 水石 · 自然의 藝術</p>
+        <h1>選擇의 美</h1>
+        <p>자연이 빚은 돌 속에서 아름다움을 발견하는 일,<br>그것이 수석의 세계입니다.</p>
+        <div class="hero-buttons">
+            <a href="#posts" class="cta-button primary">포스트 보기</a>
+            <a href="https://suseok.com" target="_blank" class="cta-button secondary">블로그 방문</a>
+        </div>
     </div>
-</nav>
+</section>
 
-<!-- ── WRAPPER ── -->
-<div id="wrapper">
+<!-- ── POSTS ── -->
+<section id="posts">
+    <div class="section-header">
+        <h2>Suseok Gallery</h2>
+        <p>수석의 아름다움을 담은 이야기들을 만나보세요.</p>
+    </div>
+    <div class="posts-grid" id="postsGrid"></div>
+</section>
 
-    <!-- ── MAIN CONTENT ── -->
-    <main id="content">
-        <div class="category-header">
-            <h2>Suseok</h2>
-            <span class="count">6개의 글</span>
-        </div>
+<!-- ── ABOUT ── -->
+<section id="about">
+    <div class="about-inner">
+        <h2>About Suseok</h2>
+        <h3>자연과 사람이 교감하는 예술, 수석</h3>
+        <p>
+            수석(壽石/水石)은 산이나 강에서, 바닷가에서 채취한 자연석 중 특이한 형태,
+            문양, 색깔을 지닌 돌을 탐석해서 감상하는 취미 활동입니다.
+        </p>
+        <p>
+            좋은 돌은 자연이 만들지만, 명석(名石)은 사람의 정성으로 완성됩니다.
+            물을 주고 정성으로 닦아내는 양석(養石)의 과정은 인격을 도야하는 것과 같으며,
+            세월과 관심 속에서 돌이 변화하는 경험을 통해 삶의 가르침을 얻을 수 있습니다.
+        </p>
+        <p class="about-highlight">
+            "수석은 어떠한 돌을 선택하는가라는<br>자연과 인간과의 교감 속에서 이루어지는 예술입니다."
+        </p>
+    </div>
+</section>
 
-        <div class="post-grid" id="postGrid">
-            <!-- Posts are dynamically rendered via JS -->
-        </div>
+<!-- ── TAGS ── -->
+<section id="tags">
+    <div class="section-header">
+        <h2>태그</h2>
+        <p>수석의 다양한 세계를 키워드로 탐색하세요.</p>
+    </div>
+    <div class="tag-grid" id="tagGrid"></div>
+</section>
 
-        <div class="pagination">
-            <span class="current">1</span>
-        </div>
-    </main>
-
-    <!-- ── SIDEBAR ── -->
-    <aside id="sidebar">
-
-        <!-- Profile -->
-        <div class="widget profile-widget">
-            <div class="widget-header">해인수석</div>
-            <div class="widget-body">
-                <img
-                    class="profile-img"
-                    src="https://tistory1.daumcdn.net/tistory/532020/attach/c1b74fbb748d422b88eb923fdf8e7e58"
-                    alt="프로필"
-                    onerror="this.style.display='none'"
-                >
-                <div class="profile-name">수석닷컴</div>
-            </div>
-        </div>
-
-        <!-- Categories -->
-        <div class="widget">
-            <div class="widget-header">카테고리</div>
-            <div class="widget-body">
-                <ul class="category-list">
-                    <li>
-                        <a href="https://suseok.com/category" target="_blank">
-                            <span>분류 전체보기</span>
-                            <span class="cat-count">(6)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://suseok.com/category/Suseok" target="_blank">
-                            <span>└ Suseok</span>
-                            <span class="cat-count">(6)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://suseok.com/category/trees" target="_blank">
-                            <span>└ trees</span>
-                            <span class="cat-count">(0)</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Recent Posts -->
-        <div class="widget">
-            <div class="widget-header">최근글</div>
-            <div class="widget-body">
-                <ul class="widget-post-list" id="recentPosts"></ul>
-            </div>
-        </div>
-
-        <!-- Popular Posts -->
-        <div class="widget">
-            <div class="widget-header">인기글</div>
-            <div class="widget-body">
-                <ul class="widget-post-list" id="popularPosts"></ul>
-            </div>
-        </div>
-
-        <!-- Tag Cloud -->
-        <div class="widget">
-            <div class="widget-header">태그</div>
-            <div class="tag-cloud" id="tagCloud"></div>
-        </div>
-
-        <!-- Visitor Stats -->
-        <div class="widget">
-            <div class="widget-header">방문자</div>
-            <div class="widget-body">
-                <table class="stats-table" id="statsTable"></table>
-            </div>
-        </div>
-
-    </aside>
+<!-- ── STATS ── -->
+<div id="stats">
+    <div class="stats-inner" id="statsInner"></div>
 </div>
 
 <!-- ── FOOTER ── -->
-<footer id="footer">
-    <p>© 2026 <a href="https://suseok.com" target="_blank">수석닷컴</a> · 해인수석 · Powered by Tistory</p>
+<footer>
+    <div class="footer-content">
+        <h3>수석닷컴</h3>
+        <p>해인수석 · 선택의 미를 창출하는 행위</p>
+        <p>Copyright &copy; 2026 수석닷컴. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="https://suseok.com" target="_blank">블로그</a>
+            <a href="https://suseok.com/category/Suseok" target="_blank">Suseok</a>
+            <a href="https://suseok.com/category/trees" target="_blank">Trees</a>
+        </div>
+    </div>
 </footer>
 
 <script>
@@ -653,80 +635,83 @@
     ];
 
     const tags = [
-        "수석", "산수경석", "양석", "국화석",
+        "수석", "壽石", "水石", "산수경석", "양석", "국화석",
         "FlowerStone", "Chrysanthemum Stone", "Suseok",
-        "미니소나무", "조형소나무", "양평소나무",
-        "壽石", "水石", "탐석", "자연석", "관상석",
-        "돌예술", "해인수석", "수석감상", "수석취미"
+        "탐석", "자연석", "관상석", "돌예술", "해인수석",
+        "미니소나무", "조형소나무", "양평소나무", "수석감상", "수석취미"
     ];
 
     const stats = [
-        { label: "전체 방문자", value: "6,511" },
-        { label: "오늘",         value: "24" },
-        { label: "어제",         value: "6" }
+        { number: "6,511", label: "전체 방문자" },
+        { number: "6",     label: "포스트" },
+        { number: "19",    label: "태그" },
+        { number: "2",     label: "카테고리" }
     ];
 
-    /* ── RENDER FUNCTIONS ── */
-
+    /* ── RENDER ── */
     function renderPosts() {
-        const grid = document.getElementById('postGrid');
-        grid.innerHTML = posts.map(p => `
-            <article class="post-item">
-                <a href="${p.url}" target="_blank">
-                    <img
-                        class="post-thumb"
-                        src="${p.thumb}"
-                        alt="${p.title}"
-                        loading="lazy"
-                        onerror="this.parentNode.innerHTML='<div class=\\'post-thumb-placeholder\\'>🪨</div>' + this.parentNode.innerHTML.replace(this.outerHTML,'')"
-                    >
-                    <div class="post-info">
-                        <div class="post-title">${p.title}</div>
-                        <div class="post-date">${p.date}</div>
-                    </div>
-                </a>
-            </article>
+        document.getElementById('postsGrid').innerHTML = posts.map((p, i) => `
+            <a class="post-card" href="${p.url}" target="_blank" style="transition-delay:${i * 0.08}s">
+                <div class="post-card-img">
+                    <img src="${p.thumb}" alt="${p.title}" loading="lazy">
+                </div>
+                <div class="post-card-body">
+                    <h3>${p.title}</h3>
+                    <span class="post-date">${p.date}</span>
+                </div>
+            </a>
         `).join('');
-    }
-
-    function renderSidebarPosts() {
-        const recent  = document.getElementById('recentPosts');
-        const popular = document.getElementById('popularPosts');
-        const top5 = posts.slice(0, 5);
-        const popularOrder = [0, 1, 2, 3, 4]; // 인기순 (동일 데이터)
-
-        const listHtml = (arr) => arr.map(p => `
-            <li>
-                <a href="${p.url}" target="_blank">${p.title}</a>
-            </li>
-        `).join('');
-
-        recent.innerHTML  = listHtml(top5);
-        popular.innerHTML = listHtml(popularOrder.map(i => posts[i]));
     }
 
     function renderTags() {
-        const cloud = document.getElementById('tagCloud');
-        cloud.innerHTML = tags.map(t => `
-            <a href="https://suseok.com/tag/${encodeURIComponent(t)}" target="_blank">${t}</a>
+        document.getElementById('tagGrid').innerHTML = tags.map((t, i) => `
+            <a class="tag-item"
+               href="https://suseok.com/tag/${encodeURIComponent(t)}"
+               target="_blank"
+               style="transition-delay:${i * 0.04}s">
+                ${t}
+            </a>
         `).join('');
     }
 
     function renderStats() {
-        const table = document.getElementById('statsTable');
-        table.innerHTML = stats.map(s => `
-            <tr>
-                <td>${s.label}</td>
-                <td>${s.value}</td>
-            </tr>
+        document.getElementById('statsInner').innerHTML = stats.map((s, i) => `
+            <div class="stat-item" style="transition-delay:${i * 0.12}s">
+                <div class="stat-number">${s.number}</div>
+                <div class="stat-label">${s.label}</div>
+            </div>
         `).join('');
+    }
+
+    /* ── SCROLL ANIMATION ── */
+    function observe() {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll(
+            'section, .post-card, .tag-item, .stat-item'
+        ).forEach(el => io.observe(el));
+    }
+
+    /* ── MOBILE MENU ── */
+    function toggleMenu() {
+        const menu = document.getElementById('navMenu');
+        const open = menu.style.display === 'flex';
+        menu.style.cssText = open
+            ? ''
+            : 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:rgba(255,255,255,0.97);padding:1rem 5%;gap:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);backdrop-filter:blur(10px);z-index:999;';
     }
 
     /* ── INIT ── */
     renderPosts();
-    renderSidebarPosts();
     renderTags();
     renderStats();
+    observe();
 </script>
 
 </body>
