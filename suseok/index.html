@@ -470,6 +470,119 @@
             display: inline-block;
         }
 
+        /* ── Contact ── */
+        #contact {
+            background: linear-gradient(135deg, #f8faf9 0%, #ffffff 100%);
+        }
+        .contact-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .contact-form {
+            background: #fff;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 12px 40px rgba(27,48,34,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #1B3022;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1.5px solid #e0e8e2;
+            border-radius: 12px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.95rem;
+            color: #333;
+            background: #fafcfb;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #4a7c59;
+            box-shadow: 0 0 0 3px rgba(74,124,89,0.12);
+            background: #fff;
+        }
+        .form-group textarea {
+            height: 160px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #1B3022, #4a7c59);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(27,48,34,0.3);
+        }
+        .submit-btn:active { transform: translateY(0); }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .form-notice {
+            margin-top: 1.2rem;
+            text-align: center;
+            font-size: 0.82rem;
+            color: #aaa;
+        }
+        .form-notice a { color: #4a7c59; }
+        /* toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1B3022;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.error { background: #8b2c2c; }
+        @media (max-width: 600px) {
+            .contact-form { padding: 2rem 1.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+
         /* ── Scrollbar ── */
         ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -515,6 +628,7 @@
             <li><a href="#posts">포스트</a></li>
             <li><a href="#about">수석이란</a></li>
             <li><a href="#tags">태그</a></li>
+            <li><a href="#contact">문의</a></li>
             <li><a href="https://suseok.com" target="_blank">블로그 방문</a></li>
         </ul>
         <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -572,6 +686,45 @@
         <p>수석의 다양한 세계를 키워드로 탐색하세요.</p>
     </div>
     <div class="tag-grid" id="tagGrid"></div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+    <div class="section-header">
+        <h2>문의하기</h2>
+        <p>수석에 대한 궁금한 점이나 거래 문의를 남겨주세요.</p>
+    </div>
+    <div class="contact-wrapper">
+        <form class="contact-form" id="contactForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cf-name">이름 *</label>
+                    <input type="text" id="cf-name" name="name" placeholder="홍길동" required>
+                </div>
+                <div class="form-group">
+                    <label for="cf-email">이메일 *</label>
+                    <input type="email" id="cf-email" name="email" placeholder="your@email.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cf-subject">문의 유형</label>
+                <select id="cf-subject" name="subject">
+                    <option value="수석 구매/거래 문의">수석 구매 / 거래 문의</option>
+                    <option value="수석 감정 문의">수석 감정 문의</option>
+                    <option value="양석 방법 문의">양석 방법 문의</option>
+                    <option value="기타 문의">기타 문의</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cf-message">내용 *</label>
+                <textarea id="cf-message" name="message" placeholder="문의 내용을 자세히 입력해 주세요." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">문의 보내기</button>
+            <p class="form-notice">
+                답변은 <a href="mailto:jogyeong@gmail.com">jogyeong@gmail.com</a>으로 회신됩니다.
+            </p>
+        </form>
+    </div>
 </section>
 
 <!-- ── STATS ── -->
@@ -706,6 +859,70 @@
             ? ''
             : 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:rgba(255,255,255,0.97);padding:1rem 5%;gap:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);backdrop-filter:blur(10px);z-index:999;';
     }
+
+    /* ── CONTACT FORM ── */
+    // Formspree 폼 ID를 발급받으면 아래 FORMSPREE_ID를 교체하세요.
+    // 가입: https://formspree.io  (무료 월 50건)
+    const FORMSPREE_ID = ''; // 예: 'xpwzabcd'
+
+    function showToast(msg, isError) {
+        let t = document.getElementById('toastEl');
+        if (!t) {
+            t = document.createElement('div');
+            t.id = 'toastEl';
+            t.className = 'toast';
+            document.body.appendChild(t);
+        }
+        t.textContent = msg;
+        t.className = 'toast' + (isError ? ' error' : '');
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => t.classList.add('show'));
+        });
+        setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const name    = document.getElementById('cf-name').value.trim();
+        const email   = document.getElementById('cf-email').value.trim();
+        const subject = document.getElementById('cf-subject').value;
+        const message = document.getElementById('cf-message').value.trim();
+
+        btn.disabled = true;
+        btn.textContent = '전송 중...';
+
+        if (FORMSPREE_ID) {
+            // Formspree 방식 (백엔드 없이 이메일 수신)
+            try {
+                const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, subject, message })
+                });
+                if (res.ok) {
+                    showToast('문의가 성공적으로 전송되었습니다. 감사합니다!');
+                    e.target.reset();
+                } else {
+                    const data = await res.json();
+                    showToast('전송 실패: ' + (data.error || '다시 시도해 주세요.'), true);
+                }
+            } catch {
+                showToast('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', true);
+            }
+        } else {
+            // Formspree ID 미설정 시 mailto 폴백
+            const body = encodeURIComponent(
+                `이름: ${name}\n이메일: ${email}\n\n${message}`
+            );
+            const subj = encodeURIComponent(`[수석닷컴 문의] ${subject}`);
+            window.location.href = `mailto:jogyeong@gmail.com?subject=${subj}&body=${body}`;
+            showToast('이메일 앱이 열립니다. 직접 전송해 주세요.');
+        }
+
+        btn.disabled = false;
+        btn.textContent = '문의 보내기';
+    });
 
     /* ── INIT ── */
     renderPosts();
