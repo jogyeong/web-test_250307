@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정원조각 조형물 | Garden Landscape Co., Ltd.</title>
+  <meta name="description" content="경기도 양평에 위치한 정원조각 전문 회사. 정원을 예술로 가꾸는 조형물 제작 및 설치 서비스." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clr-bg:       #f7f5f2;
+      --clr-text:     #1c1c1a;
+      --clr-muted:    #6b6560;
+      --clr-accent:   #3d5a3e;
+      --clr-gold:     #a8936a;
+      --clr-light:    #ffffff;
+      --clr-border:   #d9d5cf;
+      --font-serif:   'Cormorant Garamond', 'Noto Serif KR', Georgia, serif;
+      --font-sans:    'Noto Sans KR', sans-serif;
+      --transition:   0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 4vw;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(247, 245, 242, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 var(--clr-border);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      color: var(--clr-light);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color var(--transition);
+    }
+    nav.scrolled .nav-logo { color: var(--clr-text); }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.4rem;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color var(--transition), opacity var(--transition);
+    }
+    .nav-links a:hover { color: var(--clr-light); opacity: 1; }
+    nav.scrolled .nav-links a { color: var(--clr-muted); }
+    nav.scrolled .nav-links a:hover { color: var(--clr-accent); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1.5px;
+      background: var(--clr-light);
+      transition: background var(--transition);
+    }
+    nav.scrolled .nav-hamburger span { background: var(--clr-text); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 6vw 9vh;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.55) 100%),
+        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
+      transform: scale(1.04);
+      transition: transform 12s ease-out;
+    }
+    #hero.loaded .hero-bg { transform: scale(1); }
+
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--clr-light);
+      margin-bottom: 1rem;
+    }
+    .hero-title em { font-style: italic; font-weight: 300; color: rgba(255,255,255,0.75); }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2.4rem;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 0.3rem;
+      transition: border-color var(--transition), gap var(--transition);
+    }
+    .hero-cta:hover { border-color: var(--clr-light); gap: 1.1rem; }
+    .hero-cta svg { width: 16px; }
+
+    .hero-scroll {
+      position: absolute;
+      right: 6vw; bottom: 9vh;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px; height: 48px;
+      background: rgba(255,255,255,0.3);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 6vw; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: 1.6rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.6rem;
+      color: var(--clr-text);
+    }
+    .section-title em { font-style: italic; color: var(--clr-muted); }
+    .section-body {
+      font-size: 0.95rem;
+      color: var(--clr-muted);
+      max-width: 560px;
+      line-height: 1.9;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--clr-light);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      align-items: center;
+    }
+    .about-img {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+    .about-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    .about-img:hover img { transform: scale(1.04); }
+    .about-img::after {
+      content: '';
+      position: absolute;
+      inset: 12px 0 0 12px;
+      border: 1px solid var(--clr-gold);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .about-text .tagline {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--clr-accent);
+      margin: 1.6rem 0 0.8rem;
+    }
+    .about-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--clr-border);
+    }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--clr-accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--clr-bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 4rem;
+    }
+    .service-card {
+      background: var(--clr-light);
+      padding: 2.8rem 2.2rem;
+      border: 1px solid var(--clr-border);
+      transition: box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--clr-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .service-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); transform: translateY(-4px); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 44px; height: 44px;
+      margin-bottom: 1.4rem;
+      color: var(--clr-accent);
+    }
+    .service-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+    }
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--clr-muted);
+      line-height: 1.85;
+    }
+
+    /* ── WORKS (GALLERY) ── */
+    #works { background: var(--clr-text); padding-bottom: 0; }
+    #works .section-label { color: var(--clr-gold); }
+    #works .section-title { color: var(--clr-light); }
+    #works .section-body { color: rgba(255,255,255,0.55); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 6px;
+      margin-top: 4rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item:nth-child(1) { grid-column: 1 / 7; grid-row: 1; aspect-ratio: 4/3; }
+    .gallery-item:nth-child(2) { grid-column: 7 / 10; grid-row: 1; aspect-ratio: 3/4; }
+    .gallery-item:nth-child(3) { grid-column: 10 / 13; grid-row: 1; aspect-ratio: 3/4; }
+    .gallery-item:nth-child(4) { grid-column: 1 / 5; grid-row: 2; aspect-ratio: 4/3; }
+    .gallery-item:nth-child(5) { grid-column: 5 / 9; grid-row: 2; aspect-ratio: 4/3; }
+    .gallery-item:nth-child(6) { grid-column: 9 / 13; grid-row: 2; aspect-ratio: 4/3; }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.4rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-caption {
+      color: var(--clr-light);
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+    }
+    .gallery-caption span {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: 0.3rem;
+      font-style: normal;
+    }
+
+    /* ── PROCESS ── */
+    #process { background: var(--clr-light); }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 4rem;
+      border-top: 1px solid var(--clr-border);
+    }
+    .step {
+      padding: 2.4rem 2rem;
+      border-right: 1px solid var(--clr-border);
+      position: relative;
+    }
+    .step:last-child { border-right: none; }
+    .step-num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--clr-border);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.7rem;
+    }
+    .step-desc {
+      font-size: 0.82rem;
+      color: var(--clr-muted);
+      line-height: 1.85;
+    }
+
+    /* ── TESTIMONIAL / QUOTE ── */
+    #quote {
+      background: var(--clr-accent);
+      padding: 6rem 6vw;
+      text-align: center;
+    }
+    .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 6rem;
+      color: rgba(255,255,255,0.15);
+      line-height: 0.6;
+      margin-bottom: 1.5rem;
+    }
+    .quote-text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2.8vw, 2.1rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--clr-light);
+      max-width: 780px;
+      margin: 0 auto 2rem;
+      line-height: 1.55;
+    }
+    .quote-source {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--clr-bg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      align-items: start;
+    }
+    .contact-info { padding-top: 0.5rem; }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 2rem;
+    }
+    .contact-detail-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+    }
+    .contact-detail-value {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--clr-text);
+    }
+    .contact-map {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--clr-muted);
+      border: 1px solid var(--clr-border);
+      overflow: hidden;
+    }
+    .contact-map iframe {
+      width: 100%; height: 100%;
+      border: none;
+      filter: grayscale(30%) contrast(1.05);
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--clr-border);
+      padding: 0.7rem 0;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--clr-text);
+      outline: none;
+      transition: border-color var(--transition);
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--clr-accent); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    .btn-submit {
+      align-self: flex-start;
+      margin-top: 0.5rem;
+      background: var(--clr-accent);
+      color: var(--clr-light);
+      border: none;
+      padding: 0.95rem 2.4rem;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-submit:hover { background: #2e4430; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--clr-text);
+      color: rgba(255,255,255,0.45);
+      padding: 3rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--clr-light);
+      letter-spacing: 0.08em;
+    }
+    .footer-copy { font-size: 0.75rem; }
+    .footer-links {
+      display: flex; gap: 1.8rem; list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--clr-gold); }
+
+    /* ── FADE-IN ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #about, #contact { grid-template-columns: 1fr; }
+      .about-img { max-width: 480px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .step:nth-child(2) { border-right: none; }
+      .step:nth-child(3) { border-right: 1px solid var(--clr-border); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(n) { grid-column: auto; grid-row: auto; aspect-ratio: 4/3; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 5rem 5vw; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .step { border-right: none; border-bottom: 1px solid var(--clr-border); }
+      .step:last-child { border-bottom: none; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Garden Landscape</a>
+    <ul class="nav-links">
+      <li><a href="#about">소개</a></li>
+      <li><a href="#services">서비스</a></li>
+      <li><a href="#works">작품</a></li>
+      <li><a href="#process">작업과정</a></li>
+      <li><a href="#contact">문의</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Garden Landscape Co., Ltd. &nbsp;·&nbsp; 경기도 양평</p>
+      <h1 class="hero-title">
+        정원을 <em>예술로</em><br>가꾸다
+      </h1>
+      <p class="hero-sub">
+        자연과 조화를 이루는 정원조각 조형물 전문 제작·설치.<br>
+        공간에 생명을 불어넣는 환경조각의 세계.
+      </p>
+      <a href="#works" class="hero-cta">
+        작품 보기
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-img reveal">
+      <img
+        src="https://images.unsplash.com/photo-1504198070170-4ca53bb1c1fa?w=800&q=80"
+        alt="정원조각 조형물"
+        loading="lazy"
+      />
+    </div>
+    <div class="about-text reveal">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">자연과 예술이<br>만나는 공간</h2>
+      <p class="section-body">
+        Garden Landscape Co., Ltd.는 경기도 양평에 자리한 정원조각 전문 기업입니다.<br><br>
+        아름다운 정원을 완성하는 조형물은 단순한 장식물이 아닙니다. 공간의 이야기를 담고, 빛과 바람과 함께 살아 숨쉬는 예술 작품입니다. 저희는 고객의 공간과 철학에 맞는 조각 작품을 직접 제작·설치하여 정원을 예술적 경험의 장으로 만들어 드립니다.
+      </p>
+      <p class="tagline">"자연 속에 놓인 조각은 계절과 함께 새로워진다"</p>
+      <p class="section-body">
+        옥외 환경조각부터 소품 정원장식까지, 돌·금속·목재·복합소재를 활용하여 내구성과 미적 완성도를 동시에 추구합니다.
+      </p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">20<span style="font-size:1.4rem">+</span></div>
+          <div class="stat-label">Years of Work</div>
+        </div>
+        <div>
+          <div class="stat-num">500<span style="font-size:1.4rem">+</span></div>
+          <div class="stat-label">작품 설치</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">수작업 제작</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="reveal">
+      <p class="section-label">Services</p>
+      <h2 class="section-title">제공하는 <em>서비스</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+          <circle cx="24" cy="18" r="10"/><path d="M8 44c0-8.837 7.163-16 16-16s16 7.163 16 16"/>
+        </svg>
+        <div class="service-name">정원조각 제작</div>
+        <p class="service-desc">
+          돌·청동·스테인리스·목재 등 다양한 소재를 활용하여 고객 맞춤 정원 조각 작품을 수작업으로 제작합니다. 소형 가든 오너먼트부터 대형 조형물까지.
+        </p>
+      </div>
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+          <rect x="6" y="6" width="36" height="36" rx="2"/>
+          <path d="M6 18h36M18 18v24"/>
+        </svg>
+        <div class="service-name">환경조각 설치</div>
+        <p class="service-desc">
+          공원, 주택정원, 기업 조경, 호텔 등 다양한 옥외 공간에 어울리는 환경조각을 설계·제작·설치합니다. 공간의 성격과 분위기를 충분히 고려합니다.
+        </p>
+      </div>
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+          <path d="M24 6L6 18v24h12V30h12v12h12V18L24 6z"/>
+        </svg>
+        <div class="service-name">조경 컨설팅</div>
+        <p class="service-desc">
+          정원 공간 전체의 조각 배치 계획 및 컨설팅 서비스를 제공합니다. 식재 계획과 연계하여 조각과 자연이 조화로운 정원을 구현해 드립니다.
+        </p>
+      </div>
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+          <path d="M8 40L24 8l16 32H8z"/>
+        </svg>
+        <div class="service-name">기념·상징물 제작</div>
+        <p class="service-desc">
+          기관, 지자체, 기업의 상징조형물 및 기념물 제작. 공공예술 설치 경험을 바탕으로 위치와 의미에 맞는 작품을 제안합니다.
+        </p>
+      </div>
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+          <circle cx="24" cy="24" r="16"/>
+          <path d="M24 16v8l6 4"/>
+        </svg>
+        <div class="service-name">유지·보수 관리</div>
+        <p class="service-desc">
+          설치 후에도 정기적인 방문 점검과 표면 처리, 세척, 보수 작업으로 조형물이 오랫동안 아름다움을 유지할 수 있도록 관리해 드립니다.
+        </p>
+      </div>
+      <div class="service-card reveal">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+          <path d="M6 42V20l18-14 18 14v22H30V30H18v12H6z"/>
+        </svg>
+        <div class="service-name">실내 조형물</div>
+        <p class="service-desc">
+          로비, 갤러리, 상업 공간을 위한 실내 조형물 제작. 공간의 분위기와 브랜드 아이덴티티를 반영한 맞춤형 인테리어 오브제를 제공합니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="reveal">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">주요 <em>작품</em></h2>
+      <p class="section-body">자연과 공간, 그리고 사람이 어우러지는 조형 작품들을 소개합니다.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="정원 조각 1" loading="lazy" />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Garden Sculpture</span>
+            자연 속의 형상
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1604147706283-d7119b5b822c?w=700&q=80" alt="정원 조각 2" loading="lazy" />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Stone Work</span>
+            돌의 언어
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80" alt="정원 조각 3" loading="lazy" />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Environmental Art</span>
+            환경조각
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1501084817091-a4f3d1d19e07?w=800&q=80" alt="정원 조각 4" loading="lazy" />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Garden Ornament</span>
+            정원 오너먼트
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1576158114254-3ba81558b87d?w=800&q=80" alt="정원 조각 5" loading="lazy" />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Public Art</span>
+            공공 조형물
+          </div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&q=80" alt="정원 조각 6" loading="lazy" />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Nature & Art</span>
+            자연과 예술
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="reveal">
+      <p class="section-label">Process</p>
+      <h2 class="section-title">작업 <em>과정</em></h2>
+      <p class="section-body">상담부터 설치 완료까지, 모든 단계를 함께합니다.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">상담 및 현장조사</div>
+        <p class="step-desc">고객의 공간과 요구사항을 파악하고 현장을 직접 방문하여 환경 조건과 설치 가능성을 분석합니다.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-title">디자인 제안</div>
+        <p class="step-desc">공간의 특성에 맞는 작품 콘셉트와 스케치를 제안합니다. 소재, 색상, 크기를 함께 논의합니다.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-title">제작</div>
+        <p class="step-desc">확정된 디자인을 바탕으로 작업실에서 직접 수작업으로 조형물을 제작합니다. 중간 확인 과정을 거칩니다.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-title">설치 및 마감</div>
+        <p class="step-desc">완성된 작품을 현장에 운반·설치하고, 최종 마감 및 방수·방청 처리로 오랜 수명을 보장합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section id="quote">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">
+      조각은 땅에 뿌리를 내리고, 하늘을 향해 손을 뻗는다.<br>
+      정원 속의 조형물은 그 공간과 함께 숨쉬는 생명이다.
+    </p>
+    <p class="quote-source">Garden Landscape Co., Ltd.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-info reveal">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">문의 <em>&amp; 상담</em></h2>
+      <p class="section-body" style="margin-bottom:2.5rem;">
+        작품 제작·설치에 관한 문의, 견적 요청은 아래 연락처 또는 양식을 통해 주시면 성실히 답변 드립니다.
+      </p>
+      <div class="contact-detail">
+        <span class="contact-detail-label">주소</span>
+        <span class="contact-detail-value">경기도 양평군 옥천면 옥천리 75</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">전화</span>
+        <span class="contact-detail-value">010-4025-2435</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">운영시간</span>
+        <span class="contact-detail-value">월–토 09:00 – 18:00</span>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-detail-label">이메일</span>
+        <span class="contact-detail-value">info@gardenlandscape.kr</span>
+      </div>
+      <div class="contact-map" style="margin-top:1.5rem;">
+        <iframe
+          src="https://maps.google.com/maps?q=경기도+양평군+옥천면+옥천리+75&output=embed&z=14"
+          title="위치 지도"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-label" style="padding-top:0.5rem;">Send Message</p>
+      <h2 class="section-title" style="font-size:1.8rem;">메시지 <em>보내기</em></h2>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">이름 *</label>
+            <input type="text" id="name" name="name" required placeholder="홍길동" />
+          </div>
+          <div class="form-group">
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">이메일 *</label>
+          <input type="email" id="email" name="email" required placeholder="example@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="type">문의 유형</label>
+          <select id="type" name="type">
+            <option value="">선택해 주세요</option>
+            <option value="garden">정원조각 제작</option>
+            <option value="env">환경조각 설치</option>
+            <option value="consult">조경 컨설팅</option>
+            <option value="memorial">기념·상징물</option>
+            <option value="maintenance">유지·보수</option>
+            <option value="other">기타</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">문의 내용 *</label>
+          <textarea id="message" name="message" required placeholder="설치 장소, 원하시는 작품 스타일, 예산 등을 알려 주시면 더욱 정확한 상담이 가능합니다."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">문의 보내기</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Garden Landscape Co., Ltd.</div>
+    <p class="footer-copy">ⓒ 2026 Garden Landscape Co., Ltd. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#about">소개</a></li>
+      <li><a href="#works">작품</a></li>
+      <li><a href="#contact">문의</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // NAV scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Hero ken-burns on load
+    window.addEventListener('load', () => {
+      document.getElementById('hero').classList.add('loaded');
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Contact form
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      const action = form.getAttribute('action');
+      if (action.includes('YOUR_FORM_ID')) {
+        e.preventDefault();
+        alert('문의해 주셔서 감사합니다!\n설정 후 이메일로 수신됩니다.\n전화 문의: 010-4025-2435');
+      }
+    });
+  </script>
+</body>
+</html>
