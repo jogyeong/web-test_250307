@@ -1,0 +1,57 @@
+:root {
+  --primary-green: #2D5A27;
+  --primary-green-dark: #1E3D1A;
+  --secondary-brown: #5D4037;
+  --accent-stone: #BDBDBD;
+  --bg-light: #F5F5F0;
+  --text-dark: #212121;
+  --text-muted: #616161;
+  --white: #ffffff;
+  
+  --font-serif: 'Nanum Myeongjo', serif;
+  --font-sans: 'Pretendard', sans-serif;
+  
+  --max-width: 1200px;
+  --header-height: 80px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+section {
+  padding: 100px 20px;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
