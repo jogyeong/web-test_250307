@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="수석닷컴 - 수석은 선택의 미 (선택의 미학)">
+    <meta name="keywords" content="수석, 壽石, 선택의 미, 선택의 미학, 산수경석, 정원조경, 수석감상, 해인수석">
+    <title>수석은 선택의 미 - 수석닷컴</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & Global ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+        ul { list-style: none; }
+
+        /* ── Keyframes ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Header ── */
+        header {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1B3022;
+        }
+        .logo span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #C4A484;
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+        nav ul { display: flex; gap: 2.5rem; }
+        nav ul a {
+            color: #444;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        nav ul a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #1B3022, #4a7c59);
+            transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        nav ul a:hover { color: #1B3022; }
+        nav ul a:hover::after { width: 100%; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: #1B3022;
+        }
+
+        /* ── Hero ── */
+        #hero {
+            height: 60vh;
+            background:
+                linear-gradient(135deg, rgba(27,48,34,0.75), rgba(74,124,89,0.55)),
+                url('https://www.suseok.com/img/suseok.jpg')
+                center/cover fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to top, #fff, transparent);
+        }
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+            z-index: 1;
+            padding: 0 20px;
+        }
+        .hero-content .hero-label {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C4A484;
+            margin-bottom: 1rem;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+
+        /* ── Sections Common ── */
+        section {
+            padding: 6rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1B3022;
+            margin-bottom: 1rem;
+        }
+        .section-header p { color: #C4A484; font-size: 1.1rem; letter-spacing: 1px; }
+
+        .content-block {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .content-block.visible { opacity: 1; transform: translateY(0); }
+        .content-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #1B3022;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #C4A484;
+            padding-left: 1rem;
+        }
+        .content-block p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        .content-block b { color: #1B3022; }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .link-item {
+            background: #f8faf9;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1.5px solid #e0e8e2;
+            transition: all 0.3s ease;
+        }
+        .link-item:hover {
+            background: #fff;
+            border-color: #4a7c59;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(27,48,34,0.1);
+        }
+        .link-item h4 {
+            color: #1B3022;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .link-item a {
+            color: #C4A484;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: linear-gradient(135deg, #0a1612 0%, #1B3022 100%);
+            color: #999;
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            margin-top: 4rem;
+        }
+        .footer-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #C4A484;
+            margin-bottom: 1rem;
+        }
+        .footer-content p { opacity: 0.8; margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .footer-links { margin-top: 1.8rem; }
+        .footer-links a {
+            color: #999;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover { color: #C4A484; background: rgba(196,164,132,0.1); }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+            .hamburger { display: flex; }
+            section { padding: 4rem 5%; }
+            .links-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a href="index.html">수석닷컴<span>Suseok · 해인수석</span></a>
+        </div>
+        <ul id="navMenu">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="index.html#posts">포스트</a></li>
+            <li><a href="about.html">수석이란</a></li>
+            <li><a href="index.html#tags">태그</a></li>
+            <li><a href="index.html#contact">문의</a></li>
+            <li><a href="https://suseok.com" target="_blank">블로그 방문</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<section id="hero">
+    <div class="hero-content">
+        <p class="hero-label">The Art of Selection</p>
+        <h1>수석은 선택의 미</h1>
+    </div>
+</section>
+
+<section>
+    <div class="section-header">
+        <h2>선택의 미학</h2>
+        <p>자연과 인간의 고요한 교감</p>
+    </div>
+
+    <div class="content-block">
+        <p>
+            자연이 수억 년에 걸쳐 빚어낸 돌 하나를 선택하는 것, 그것은 단순한 취미를 넘어 삶의 철학이자 예술입니다. 수석은 우리에게 묻습니다. <b>"무엇을 선택할 것인가?"</b>
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>1. 강가에서 마주한 아우성</h3>
+        <p>
+            강가에 서면 발밑으로 수만 마리의 돌들이 저마다의 목소리로 아우성칩니다. 어떤 것은 억겁의 세월을 견디느라 둥글게 마모되었고, 어떤 것은 이제 막 산의 품을 떠나온 듯 서슬 퍼런 각을 세우고 있습니다. 사람들은 흔히 예술을 '무에서 유를 창조하는 것'이라 말하지만, 수석은 <b>'유에서 미를 발견하는 것'</b>입니다. 수천, 수만의 평범함 속에서 나만의 울림을 주는 단 하나의 존재를 찾아내는 혜안, 그것이 바로 수석의 시작입니다.
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>2. 덜어냄의 미학</h3>
+        <p>
+            수석은 채우는 예술이 아니라 덜어내는 예술입니다. 화려한 색채나 정교한 조각이 더해지지 않은, 있는 그대로의 자연을 선택하는 용기가 필요합니다. 우리는 흔히 더 많은 것, 더 화려한 것을 가지려 애쓰지만, 수석은 <b>'충분함'</b>을 가르칩니다. 거친 질감 속에 숨겨진 산맥을 읽어내고, 작은 구멍 하나에서 깊은 동굴의 정취를 느낄 수 있을 때, 우리는 비로소 소유가 아닌 감상의 경지에 이르게 됩니다.
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>3. 삶은 선택의 연속</h3>
+        <p>
+            돌을 고르는 행위는 우리의 삶과 닮아 있습니다. 우리는 매 순간 수많은 가치와 인연 속에서 무언가를 선택하며 살아갑니다. 어떤 이는 날카로운 상처를 선택해 평생을 아파하고, 어떤 이는 풍파에 깎인 매끄러운 평화를 선택해 내면을 다스립니다.
+        </p>
+        <p>
+            오늘도 나는 강가를 거닐며 마음의 돌을 고릅니다. 화려하지 않아도 깊이가 있고, 거칠어도 당당한 자연의 일부를 내 삶으로 초대합니다. 그 고요한 선택의 순간이야말로 인류가 누릴 수 있는 가장 사치스럽고도 경건한 예술의 시간임을 나는 믿습니다.
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>관련 네트워크</h3>
+        <div class="links-grid">
+            <div class="link-item">
+                <h4>정원조경 Garden Art</h4>
+                <a href="https://jogyeong.com/" target="_blank">jogyeong.com</a>
+            </div>
+            <div class="link-item">
+                <h4>정원조각 조형물</h4>
+                <a href="https://www.sculpture.kr/" target="_blank">sculpture.kr</a>
+            </div>
+            <div class="link-item">
+                <h4>수석닷컴 블로그</h4>
+                <a href="https://suseok.com/" target="_blank">suseok.com</a>
+            </div>
+            <div class="link-item">
+                <h4>유튜브 채널</h4>
+                <a href="https://www.youtube.com/jogyeong/videos" target="_blank">Garden & Suseok TV</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <h3>수석닷컴</h3>
+        <p>해인수석 · 선택의 미를 창출하는 행위</p>
+        <p>Copyright &copy; 2026 수석닷컴. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="https://suseok.com" target="_blank">블로그</a>
+            <a href="https://suseok.com/category/Suseok" target="_blank">Suseok</a>
+            <a href="https://suseok.com/category/trees" target="_blank">Trees</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('navMenu');
+        const open = menu.style.display === 'flex';
+        menu.style.cssText = open
+            ? ''
+            : 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:rgba(255,255,255,0.97);padding:1rem 5%;gap:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);backdrop-filter:blur(10px);z-index:999;';
+    }
+
+    const observe = () => {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.content-block').forEach(el => io.observe(el));
+    };
+    observe();
+</script>
+
+</body>
+</html>

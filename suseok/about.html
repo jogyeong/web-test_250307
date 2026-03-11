@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="수석닷컴 - 수석(壽石)의 역사와 미학">
+    <meta name="keywords" content="수석, 壽石, 水石, 산수경석, 양석, 국화석, FlowerStone, 탐석, 해인수석, 추사 김정희">
+    <title>수석(壽石)의 역사와 미학 - 수석닷컴</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & Global ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+        ul { list-style: none; }
+
+        /* ── Keyframes ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* ── Header ── */
+        header {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1B3022;
+            transition: all 0.3s ease;
+        }
+        .logo a:hover { transform: scale(1.05); display: inline-block; }
+        .logo span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #C4A484;
+            text-transform: uppercase;
+            margin-top: -5px;
+        }
+        nav ul { display: flex; gap: 2.5rem; }
+        nav ul a {
+            color: #444;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        nav ul a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #1B3022, #4a7c59);
+            transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        nav ul a:hover { color: #1B3022; }
+        nav ul a:hover::after { width: 100%; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: #1B3022;
+            transition: all 0.3s ease;
+        }
+
+        /* ── Hero ── */
+        #hero {
+            height: 60vh;
+            background:
+                linear-gradient(135deg, rgba(27,48,34,0.75), rgba(74,124,89,0.55)),
+                url('https://www.suseok.com/img/suseok1.jpg')
+                center/cover fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to top, #fff, transparent);
+        }
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+            z-index: 1;
+            padding: 0 20px;
+        }
+        .hero-content .hero-label {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C4A484;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* ── Sections Common ── */
+        section {
+            padding: 6rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1B3022;
+            margin-bottom: 1rem;
+        }
+        .section-header p { color: #C4A484; font-size: 1.1rem; letter-spacing: 1px; }
+
+        .content-block {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .content-block.visible { opacity: 1; transform: translateY(0); }
+        .content-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #1B3022;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #C4A484;
+            padding-left: 1rem;
+        }
+        .content-block p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        .content-block b { color: #1B3022; }
+        .content-block ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        .content-block li {
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            color: #555;
+        }
+        .content-block li::before {
+            content: '•';
+            color: #C4A484;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .img-container {
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: linear-gradient(135deg, #0a1612 0%, #1B3022 100%);
+            color: #999;
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            margin-top: 4rem;
+        }
+        .footer-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #C4A484;
+            margin-bottom: 1rem;
+        }
+        .footer-content p { opacity: 0.8; margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .footer-links { margin-top: 1.8rem; }
+        .footer-links a {
+            color: #999;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover { color: #C4A484; background: rgba(196,164,132,0.1); }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #1B3022, #4a7c59);
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+            .hamburger { display: flex; }
+            section { padding: 4rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <a href="index.html">수석닷컴<span>Suseok · 해인수석</span></a>
+        </div>
+        <ul id="navMenu">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="index.html#posts">포스트</a></li>
+            <li><a href="about.html">수석이란</a></li>
+            <li><a href="index.html#tags">태그</a></li>
+            <li><a href="index.html#contact">문의</a></li>
+            <li><a href="https://suseok.com" target="_blank">블로그 방문</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<section id="hero">
+    <div class="hero-content">
+        <p class="hero-label">History & Aesthetics</p>
+        <h1>수석(壽石)의 역사와 미학</h1>
+    </div>
+</section>
+
+<section>
+    <div class="section-header">
+        <h2>수석노태지관(壽石老苔池館)</h2>
+        <p>자연이 빚은 영겁의 시간</p>
+    </div>
+
+    <div class="content-block">
+        <p>
+            <b>'수석(壽石)'</b>이라는 용어는 대구광역시 달성군 화원읍 본리(남평문씨 본리 세거지) 인흥마을의 <b>광거당(廣居堂)</b>에 걸린 현판에서 그 기원을 찾을 수 있습니다.
+        </p>
+        <p>
+            조선 시대 말기의 문신이자 금석학자 추사 김정희(1786-1856)가 예서체로 쓴 <b>'수석노태지관(壽石老苔池館)'</b>은 "수석과 오래된 이끼가 있는 연못가의 집"이라는 뜻으로, 당시 선비들이 자연의 축소판인 수석을 얼마나 가까이 두고 감상했는지를 보여주는 귀중한 자료입니다.
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>현대 수석 문화의 확산</h3>
+        <p>
+            현대적인 의미의 수석 열풍은 1960년대 후반에 본격화되었습니다. 이는 일본의 수석 인기 영향과 더불어 한국 내 자생적인 수집 문화가 결합한 결과였습니다.
+        </p>
+        <p>
+            <b>한국 최초의 수석 전시회</b>는 1967년 4월 12일부터 17일까지 부산공립회관(현 부산공보관)에서 개최되며 대중화의 물꼬를 텄습니다. 현재 한국에는 약 8만 명의 애석인들이 활동하고 있으며, 200여 개의 동호회와 17개의 공·사립 수석 박물관이 운영되고 있습니다.
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>분류와 감상법</h3>
+        <p>
+            수석은 형태와 특징에 따라 <b>산수경석(풍경)</b>, <b>물형석(사물)</b>, <b>문양석(무늬/색채)</b>, <b>추상석</b> 등 네 가지로 분류됩니다. 좋은 수석의 조건은 다음과 같습니다.
+        </p>
+        <ul>
+            <li>질감이 단단하고 세월의 흔적(고색)이 느껴져야 함</li>
+            <li>주로 어두운 색조를 띠어 깊이감을 줄 것</li>
+            <li>보는 이의 상상력을 자극하는 자연스러운 형태를 갖출 것</li>
+        </ul>
+        <p>
+            과거에는 주로 산과 강에서 수집되었으나, 오늘날에는 해안선을 따라 발견되는 해석(海石)도 큰 사랑을 받습니다. 특히 돌에 물을 뿌려 색감과 무늬가 선명하게 변하는 것을 관찰하는 <b>'무늬 변화 감상'</b>은 한국 수석 문화만의 즐거운 풍습입니다.
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>영화 '기생충'과 수석</h3>
+        <div class="img-container">
+            <img src="https://www.suseok.com/img/suseok2.jpg" alt="영화 기생충 수석">
+        </div>
+        <p class="img-caption">영화 '기생충'에 등장한 산수경석 소품</p>
+        <p>
+            봉준호 감독의 영화 <b>'기생충'</b>에 주요 상징으로 등장한 수석은 현재 아카데미 영화박물관에 전시되어 한국 수석 문화의 일면을 전 세계에 알리고 있습니다. 영화 속에서 수석은 부와 행운의 상징이자, 때로는 무거운 운명의 짐으로 묘사되며 깊은 인상을 남겼습니다.
+        </p>
+    </div>
+
+    <div class="content-block">
+        <h3>결론 및 현대적 의의</h3>
+        <p>
+            우리는 이제 막 한국 수석이 아시아 석조 예술사에 기여한 가치를 재발견하기 시작했습니다. 지속적인 연구와 분석을 통해 자연과 인간, 그리고 문화 사이의 유대감을 상징하는 수석의 중요성은 더욱 드러날 것입니다.
+        </p>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <h3>수석닷컴</h3>
+        <p>해인수석 · 선택의 미를 창출하는 행위</p>
+        <p>Copyright &copy; 2026 수석닷컴. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="https://suseok.com" target="_blank">블로그</a>
+            <a href="https://suseok.com/category/Suseok" target="_blank">Suseok</a>
+            <a href="https://suseok.com/category/trees" target="_blank">Trees</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('navMenu');
+        const open = menu.style.display === 'flex';
+        menu.style.cssText = open
+            ? ''
+            : 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:rgba(255,255,255,0.97);padding:1rem 5%;gap:1rem;box-shadow:0 8px 20px rgba(0,0,0,0.1);backdrop-filter:blur(10px);z-index:999;';
+    }
+
+    const observe = () => {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.content-block').forEach(el => io.observe(el));
+    };
+    observe();
+</script>
+
+</body>
+</html>
