@@ -1,1 +1,1 @@
-A simple HTML/JS/CSS starter template
+suseok.com 수석사이트
